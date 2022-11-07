@@ -14,8 +14,8 @@
                             <span>{{product.name}}</span>   
                             <div class="buttons d-flex flex-row">   
                                 <div class="cart">                                       
-                                </div> <button class="btn btn-success" @click="data.handleId(product)">  Edit</button>   
-                                <button class="btn btn-success ml-5" @click="data.DeleteId(product.id)">  delete</button>                                                                       
+                                </div> 
+                                <button class="btn btn-success" @click="data.handleBuy(product)">Buy</button>   
                             </div>   
                         </div>
     
@@ -26,34 +26,31 @@
             </div>
     
         </div>
-        <InsertProduct />
     </div>
 </template>
 
 <script> 
-import {useProduct} from '@/store/useProduct'
+import {useBuy} from '@/store/useBuy'
 import { useQuery } from '@vue/apollo-composable'
 import {ALL_PRODUCT_QUERY} from '@/graphql/allProducts'
-import InsertProduct from '@/components/InsertProduct.vue'
 import Preloader from '@/loading/Preloader'
 
 
 export default {
-    name : "demoProduct" , 
+    name : "demoBuyProduct" , 
     components:{
-        InsertProduct,
         Preloader
     },
   setup () { 
-    const { result, loading ,error   } = useQuery(ALL_PRODUCT_QUERY)   
-      const data = useProduct()  
+    const { result, loading ,error   } = useQuery(ALL_PRODUCT_QUERY)
+      const data = useBuy()  ;
             return {
             data ,
             result,
             loading,
             error
-         
             }  
+
   },
 }
 </script>

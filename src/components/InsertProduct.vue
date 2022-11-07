@@ -15,8 +15,8 @@
               
                     <label>Hình ảnh</label>
                     <input type="text" name="image" v-model="product.image">      
-                      <input  type="button" class="btn btn-success mt-2" @click="data.createProduct(product)" value="Add">
-                      <input  type="button" class="btn btn-success mt-2" @click="data.updateProduct(product)" value="Update">          
+                      <input  type="button" class="btn btn-success mt-2" @click="data.AddProduct(product)" value="Add">
+                      <input  type="button" class="btn btn-success mt-2" @click="data.CapNhap(product)" value="Update">          
                   </form>
               </section>   
           </div>   

@@ -26,8 +26,7 @@
     name:"demoResgister" ,
     setup () {
       const data = useRegister() ;
-        const users = data.users
-     
+        const users = data.users   
         return {users,data }
     }
    

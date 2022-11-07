@@ -6,7 +6,8 @@ import Login from "@/components/Login.vue";
 import Product from "@/components/Product.vue";
 import Resgister from "@/components/Resgister.vue";
 import Notifications from "@kyvg/vue3-notification";
-
+import BuyProduct from "@/components/BuyProduct";
+import Cart from "@/components/Cart.vue";
 export const router = createRouter({
 	history: createWebHistory(),
 	routes: [
@@ -24,6 +25,16 @@ export const router = createRouter({
 			path: "/resgister",
 			name: "resgister",
 			component: Resgister,
+		},
+		{
+			path: "/buy",
+			name: "buy",
+			component: BuyProduct,
+		},
+		{
+			path: "/cart",
+			name: "cart",
+			component: Cart,
 		},
 	],
 });

@@ -5,6 +5,7 @@ import { ref } from "vue";
 import { update_product } from "@/graphql/updateProduct";
 import { ALL_PRODUCT_QUERY } from "@/graphql/allProducts";
 import { deleteProduct } from "@/graphql/deleteProduct";
+import { notify } from "@kyvg/vue3-notification";
 
 export const useProduct = defineStore("useProduct", () => {
 	const product = ref({
@@ -14,6 +15,22 @@ export const useProduct = defineStore("useProduct", () => {
 		image: "",
 	});
 
+	const AddProduct = () => {
+		if (product.value.name !== "" && product.value.image !== "") {
+			createProduct(product.value);
+			notify({
+				title: "THÔNG BÁO!",
+				text: "Thêm thành công !",
+				type: "success",
+			});
+		} else {
+			notify({
+				title: "THÔNG BÁO!",
+				text: "Vui lòng nhập đầy đủ",
+				type: "error",
+			});
+		}
+	};
 	const { mutate: createProduct } = useMutation(CREATE_PRODUCT, {
 		variables: {
 			name: product.value.name,
@@ -34,6 +51,22 @@ export const useProduct = defineStore("useProduct", () => {
 		product.value.image = products.image;
 	};
 
+	const CapNhap = () => {
+		if (product.value.name !== "" && product.value.image !== "") {
+			updateProduct(product.value);
+			notify({
+				title: "THÔNG BÁO!",
+				text: "Update thành công !",
+				type: "success",
+			});
+		} else {
+			notify({
+				title: "THÔNG BÁO!",
+				text: "Vui lòng nhập đầy đủ",
+				type: "error",
+			});
+		}
+	};
 	const { mutate: updateProduct } = useMutation(update_product, () => ({
 		variables: {
 			id: product.value.id,
@@ -52,6 +85,11 @@ export const useProduct = defineStore("useProduct", () => {
 	const DeleteId = (id) => {
 		idProduct.value = id;
 		Delete();
+		notify({
+			title: "THÔNG BÁO!",
+			text: "Xóa thành công !",
+			type: "success",
+		});
 	};
 
 	const { mutate: Delete } = useMutation(deleteProduct, () => ({
@@ -72,5 +110,7 @@ export const useProduct = defineStore("useProduct", () => {
 		updateProduct,
 		DeleteId,
 		Delete,
+		AddProduct,
+		CapNhap,
 	};
 });

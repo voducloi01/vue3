@@ -7,7 +7,7 @@
     </div>
     <div class="mb-3">
       <label for="exampleFormControlInput1" class="form-label">Pass word</label>
-      <input type="text" class="form-control" id="password" placeholder="Pass word" v-model="data.users.password">
+      <input type="password" class="form-control" id="password" placeholder="Pass word" v-model="data.users.password">
     </div>
     <div class="mb-3" style="display: flex; align-items: center;">
     <button class="btn btn-danger" @click="data.login(data.users)"> Đăng Nhập</button>
