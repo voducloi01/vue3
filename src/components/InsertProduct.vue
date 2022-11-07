@@ -1,26 +1,27 @@
 <template>
-    <div class="mt-5">    
-        <div class="container">        
-            <section class="panel panel-default">   
-                <div class="panel-heading">    
-                    <h3 class="panel-title">Thêm sản phẩm </h3>   
-                </div>  
-                <form class="wrap_input">
-                  <label>Tên sản phẩm</label>
-                  <input type="text" name="name" v-model="product.name">
-                 
-                  <label>Gía Tiền</label>
-                  <input type="text" name="price" v-model="product.price">
-            
-                  <label>Hình ảnh</label>
-                  <input type="text" name="image" v-model="product.image">      
-                    <input  type="button" class="btn btn-success mt-2" @click="data.createProduct(product)" value="Add">
-                    <input  type="button" class="btn btn-success mt-2" @click=" updateProduct(product)" value="Update">
+   <div>
+      <div class="mt-5">    
+          <div class="container">        
+              <section class="panel panel-default">   
+                  <div class="panel-heading">    
+                      <h3 class="panel-title">Thêm sản phẩm </h3>   
+                  </div>  
+                  <form class="wrap_input">
+                    <label>Tên sản phẩm</label>
+                    <input type="text" name="name" v-model="product.name">
+                   
+                    <label>Gía Tiền</label>
+                    <input type="number" name="price" v-model="product.price">
               
-                </form>
-            </section>   
-        </div>   
-    </div>
+                    <label>Hình ảnh</label>
+                    <input type="text" name="image" v-model="product.image">      
+                      <input  type="button" class="btn btn-success mt-2" @click="data.createProduct(product)" value="Add">
+                      <input  type="button" class="btn btn-success mt-2" @click="data.updateProduct(product)" value="Update">          
+                  </form>
+              </section>   
+          </div>   
+      </div>
+   </div>
 </template>
 
 <script>
@@ -30,7 +31,7 @@ export default {
   setup () {
    const data = useProduct() ;
    const product = data.product ;
-    return {product ,data}
+    return {product ,data }
   } 
 }
 </script>

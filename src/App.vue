@@ -1,28 +1,26 @@
 <template>
   <div>
-    <Header/>
-    <Product />
-    <InsertProduct />
+    <notifications position="top center" />
+   <Header />
+    <router-view>
+    </router-view>
   </div>
 </template>
 
 <script>
 
-import Product from './components/Product'
 import { provide } from "vue";
 import { DefaultApolloClient } from "@vue/apollo-composable";
 import apolloClient from '../apollo.config';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './components/Header.vue';
-import InsertProduct from './components/InsertProduct.vue';
+import Header from "./components/Header.vue";
+
 
 
 export default {
   name: 'App',
   components: {
-    Product,
-    Header,
-    InsertProduct
+    Header
 },
   setup () {
     provide(DefaultApolloClient, apolloClient)

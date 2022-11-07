@@ -1,6 +1,6 @@
 <template>
-    <div v-if="loading">Loading...</div>
-    <div v-else-if="error">Error: {{ error.message }}</div>
+    <div v-if="loading">loading....</div>
+    <div v-else-if="error">{{error}}</div>
     <div v-else-if="result && result.getAllProduct" class="wrapper">      
         <div  class="container">    
             <div class="row g-1">   
@@ -14,8 +14,8 @@
                             <span>{{product.name}}</span>   
                             <div class="buttons d-flex flex-row">   
                                 <div class="cart">                                       
-                                </div> <button class="btn btn-success" @click="() => handleId(product)">  Edit</button>   
-                                <button class="btn btn-success ml-5" @click="() =>   DeleteId(product)">  delete</button>                                                                       
+                                </div> <button class="btn btn-success" @click="data.handleId(product)">  Edit</button>   
+                                <button class="btn btn-success ml-5" @click="data.DeleteId(product.id)">  delete</button>                                                                       
                             </div>   
                         </div>
     
@@ -26,21 +26,34 @@
             </div>
     
         </div>
+        <InsertProduct />
     </div>
 </template>
 
-<script>
+<script> 
+import {useProduct} from '@/store/useProduct'
 import { useQuery } from '@vue/apollo-composable'
 import {ALL_PRODUCT_QUERY} from '@/graphql/allProducts'
+import InsertProduct from '@/components/InsertProduct.vue'
+
 export default {
     name : "demoProduct" , 
-  setup () {
-    const { result, loading, error } = useQuery(ALL_PRODUCT_QUERY)
-    return {
-      result,
-      loading,
-      error,
-    }
+    components:{
+        InsertProduct
+    },
+  setup () { 
+    const { result, loading ,error   } = useQuery(ALL_PRODUCT_QUERY)
+
+   
+      const data = useProduct()  
+            return {
+            data ,
+            result,
+            loading,
+            error
+         
+            }  
+
   },
 }
 </script>
