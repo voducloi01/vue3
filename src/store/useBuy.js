@@ -40,11 +40,31 @@ export const useBuy = defineStore("useBuy", () => {
 			},
 		],
 	});
+	const idDelete = ref();
+	const deleteId = (id) => {
+		idDelete.value = id;
+		Delete();
+		notify({
+			title: "THÔNG BÁO!",
+			text: "Xóa thành công !",
+			type: "success",
+		});
+	};
 
+	const { mutate: Delete } = useMutation(deleteCart, () => ({
+		variables: {
+			id: idDelete.value,
+		},
+		refetchQueries: [
+			{
+				query: ALL_CART,
+			},
+		],
+	}));
 	return {
 		product,
 		handleBuy,
 		createCart,
-		// deleteId,
+		deleteId,
 	};
 });
